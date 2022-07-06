@@ -447,7 +447,9 @@ public class CollectionUtilsTest {
 
   @Test
   void union() {
-    /*TODO: test this method*/
+    Set<Integer> l =  Set.of(1,2,3,4);
+    Set<Integer> m =  Set.of(5,6,7);
+    assertEquals(CollectionUtils.union(l, m), Arrays.asList(1,2,3,4,5,6,7));
   }
 
   @Test
