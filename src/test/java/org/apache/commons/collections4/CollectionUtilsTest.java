@@ -387,7 +387,21 @@ public class CollectionUtilsTest {
 
   @Test
   void transform() {
-    /*TODO: test this method*/
+    List<Integer> L = Arrays.asList(1, 2, 4, 5);
+
+    Transformer<Integer, Integer> T = value -> value%2;
+
+    CollectionUtils.transform(L, null);
+    assertEquals(Arrays.asList(1, 2, 4, 5), L);
+
+    CollectionUtils.transform(null, T);
+    assertEquals(Arrays.asList(1, 2, 4, 5), L);
+
+    CollectionUtils.transform(null, null);
+    assertEquals(Arrays.asList(1, 2, 4, 5), L);
+
+    CollectionUtils.transform(L, T);
+    assertEquals(Arrays.asList(1, 0, 0, 1), L);
   }
 
   @Test
