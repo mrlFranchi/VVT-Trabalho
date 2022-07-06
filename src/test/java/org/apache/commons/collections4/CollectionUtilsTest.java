@@ -390,6 +390,25 @@ public class CollectionUtilsTest {
   @Test
   void sizeIsEmpty() {
     /*TODO: test this method*/
+    assertFalse(CollectionUtils.sizeIsEmpty(List.of(1)));
+    assertTrue(CollectionUtils.sizeIsEmpty(new ArrayList<>()));
+
+    assertFalse(CollectionUtils.sizeIsEmpty(Map.of(1, 1, 2, 2, 3, 3, 4, 4, 5, 5)));
+    assertTrue(CollectionUtils.sizeIsEmpty(Map.of()));
+
+    assertFalse(CollectionUtils.sizeIsEmpty(new int[]{1, 2, 3, 4}));
+    assertTrue(CollectionUtils.sizeIsEmpty(new int[]{}));
+
+    assertFalse(CollectionUtils.sizeIsEmpty(List.of(1).iterator()));
+    assertTrue(CollectionUtils.sizeIsEmpty(new ArrayList<>().iterator()));
+
+    Vector<Integer> V = new Vector<>();
+    assertTrue(CollectionUtils.sizeIsEmpty(V.elements()));
+
+    V.add(1);
+    assertFalse(CollectionUtils.sizeIsEmpty(V.elements()));
+
+    assertThrows(IllegalArgumentException.class, () -> CollectionUtils.sizeIsEmpty(1));
   }
 
   @Test
