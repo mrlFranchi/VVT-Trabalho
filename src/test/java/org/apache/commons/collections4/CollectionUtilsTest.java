@@ -156,8 +156,26 @@ public class CollectionUtilsTest {
 
   @Test
   void filter() {
-    /* TODO: test this method */
+	   List<Integer> l = Arrays.asList(1,5,2,1,0);
+	   List<Integer> m = Arrays.asList(1,3,5,7,9);
+	   Predicate<Integer> isOdd = value -> value % 2 == 1;
+	   assertFalse(CollectionUtils.filter(l,null));
+	   assertFalse(CollectionUtils.filter(null,isOdd));
+	   
+	   List<Integer> aList = new ArrayList<Integer>();
+	   aList.add(1);
+	   aList.add(5);
+	   aList.add(2);
+	   aList.add(1);
+	   aList.add(0);
+	   assertTrue(CollectionUtils.filter(aList,isOdd));
+	   List<Integer> bList = new ArrayList<Integer>();
+	   bList.add(1);
+	   bList.add(5);
+	   bList.add(1);
+	   assertEquals(aList,bList);
   }
+
 
     @Test
   void filterInverse() {
@@ -413,6 +431,10 @@ public class CollectionUtilsTest {
 
   @Test
   void subtract() {
+	  /*List<Integer> la = Arrays.asList(1,5,2,1,0);
+	  List<Integer> lb = Arrays.asList(5,4,3,2,1);
+	  
+	  assert(Arrays.asList(-4, 1, -1, -1, -1), CollectionUtils.intersection(la, lb));
     /*TODO: test this method*/
   }
 
