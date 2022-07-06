@@ -438,7 +438,21 @@ public class CollectionUtilsTest {
 
   @Test
   void size() {
-    /*TODO: test this method*/
+    	  assertEquals(CollectionUtils.size(null),0);
+	  
+	  assertEquals(CollectionUtils.size(Map.of()), 0);
+	  
+	  assertEquals(CollectionUtils.size(new ArrayList<>(0)),0);
+	  assertEquals(CollectionUtils.size(List.of(1)), 1);
+	  
+	  assertEquals(CollectionUtils.size(new ArrayList<>(0).iterator()),0);
+	  
+	  Vector<Integer> vetor =  new Vector<>();
+	  assertEquals(CollectionUtils.size(vetor.elements()),0);
+	  vetor.add(1);
+	  vetor.add(2);
+	  vetor.add(3);
+	  assertEquals(CollectionUtils.size(vetor.elements()),3);
   }
 
   @Test
