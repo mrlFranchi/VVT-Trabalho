@@ -413,7 +413,9 @@ public class CollectionUtilsTest {
 
   @Test
   void subtract() {
-    /*TODO: test this method*/
+    	  List<Integer> a = Arrays.asList(1,2,3);
+	  List<Integer> b = Arrays.asList(0,1,2);
+	  assertEquals(CollectionUtils.subtract(a, b), Arrays.asList(3));
   }
 
   @Test
