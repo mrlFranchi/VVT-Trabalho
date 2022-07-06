@@ -1,5 +1,5 @@
 package org.apache.commons.collections4;
-
+/*Teste commit Lab*/
 import org.apache.commons.collections4.list.FixedSizeList;
 import org.junit.jupiter.api.function.Executable;
 import static org.junit.jupiter.api.Assertions.*;
@@ -156,12 +156,48 @@ public class CollectionUtilsTest {
 
   @Test
   void filter() {
-    /* TODO: test this method */
+	   List<Integer> l = Arrays.asList(1,5,2,1,0);
+	   List<Integer> m = Arrays.asList(1,3,5,7,9);
+	   Predicate<Integer> isOdd = value -> value % 2 == 1;
+	   assertFalse(CollectionUtils.filter(l,null));
+	   assertFalse(CollectionUtils.filter(null,isOdd));
+	   
+	   List<Integer> aList = new ArrayList<Integer>();
+	   aList.add(1);
+	   aList.add(5);
+	   aList.add(2);
+	   aList.add(1);
+	   aList.add(0);
+	   assertTrue(CollectionUtils.filter(aList,isOdd));
+	   List<Integer> bList = new ArrayList<Integer>();
+	   bList.add(1);
+	   bList.add(5);
+	   bList.add(1);
+	   assertEquals(aList,bList);
   }
 
-    @Test
+
+  @Test
   void filterInverse() {
-      /* TODO: test this method */
+	List<Integer> l = Arrays.asList(1,5,2,1,0);
+  	List<Integer> m = Arrays.asList(1,3,5,7,9);
+	Predicate<Integer> isOdd = value -> value % 2 == 0;
+	assertFalse(CollectionUtils.filterInverse(l,null));
+	assertFalse(CollectionUtils.filterInverse(null,isOdd));
+
+	List<Integer> aList = new ArrayList<Integer>();
+	aList.add(1);
+	aList.add(5);
+	aList.add(2);
+	aList.add(1);
+	aList.add(0);
+	assertTrue(CollectionUtils.filterInverse(aList,isOdd));
+	List<Integer> bList = new ArrayList<Integer>();
+	bList.add(1);
+	bList.add(5);
+	bList.add(1);
+	assertEquals(aList,bList);
+  	
   }
 
   @Test
@@ -185,7 +221,20 @@ public class CollectionUtilsTest {
 
   @Test
   void forAllDo() {
-    /* TODO: test this method */
+    List<Integer> l = Arrays.asList(1, 5, 2, 1, 0);
+    List<Integer> E = new ArrayList <> ();
+    List<Integer> F = new ArrayList <> ();
+    var t = new Closure() {
+            public void execute(Object o) {
+              Integer k = (Integer) o;
+            }
+      	  };
+    assertEquals(CollectionUtils.forAllDo(l, t),t);
+    assertEquals(CollectionUtils.forAllDo(l.iterator(), t),t);
+    CollectionUtils.forAllDo(l, E::add);
+    CollectionUtils.forAllDo(l.iterator(), F::add);
+    assertEquals(l,E);
+    assertEquals(l,F);
   }
 
   @Test
@@ -282,12 +331,22 @@ public class CollectionUtilsTest {
 
   @Test
   void isProperSubCollection() {
-    /* TODO: test this method */
+    List<Integer> l = Arrays.asList(1,2,3,3,4,5);
+    List<Integer> m = Arrays.asList(3,4,5);
+    List<Integer> n = Arrays.asList(1,2,3,4,5,5,5);
+    assertTrue(CollectionUtils.isProperSubCollection(m, l));
+    assertFalse(CollectionUtils.isProperSubCollection(l, l));
+    assertFalse(CollectionUtils.isProperSubCollection(n, l));
   }
 
   @Test
   void isSubCollection() {
-    /* TODO: test this method */
+    List<Integer> l = Arrays.asList(1,2,3,3,4,5);
+    List<Integer> m = Arrays.asList(3,4,5);
+    List<Integer> n = Arrays.asList(1,2,3,4,5,5,5);
+    assertTrue(CollectionUtils.isSubCollection(m, l));
+    assertTrue(CollectionUtils.isSubCollection(l, l));
+    assertFalse(CollectionUtils.isSubCollection(n, l));
   }
 
   @Test
@@ -384,7 +443,21 @@ public class CollectionUtilsTest {
 
   @Test
   void size() {
-    /*TODO: test this method*/
+    	  assertEquals(CollectionUtils.size(null),0);
+	  
+	  assertEquals(CollectionUtils.size(Map.of()), 0);
+	  
+	  assertEquals(CollectionUtils.size(new ArrayList<>(0)),0);
+	  assertEquals(CollectionUtils.size(List.of(1)), 1);
+	  
+	  assertEquals(CollectionUtils.size(new ArrayList<>(0).iterator()),0);
+	  
+	  Vector<Integer> vetor =  new Vector<>();
+	  assertEquals(CollectionUtils.size(vetor.elements()),0);
+	  vetor.add(1);
+	  vetor.add(2);
+	  vetor.add(3);
+	  assertEquals(CollectionUtils.size(vetor.elements()),3);
   }
 
   @Test
@@ -413,7 +486,7 @@ public class CollectionUtilsTest {
 
   @Test
   void subtract() {
-    	  List<Integer> a = Arrays.asList(1,2,3);
+    List<Integer> a = Arrays.asList(1,2,3);
 	  List<Integer> b = Arrays.asList(0,1,2);
 	  assertEquals(CollectionUtils.subtract(a, b), Arrays.asList(3));
   }
@@ -449,7 +522,9 @@ public class CollectionUtilsTest {
 
   @Test
   void union() {
-    /*TODO: test this method*/
+	    List<Integer> l =  Arrays.asList(1,2,3,4);
+	    List<Integer> m =  Arrays.asList(5,6,7);
+	    assertEquals(CollectionUtils.union(l, m), Arrays.asList(1,2,3,4,5,6,7));
   }
 
   @Test
