@@ -221,7 +221,20 @@ public class CollectionUtilsTest {
 
   @Test
   void forAllDo() {
-    /* TODO: test this method */
+    List<Integer> l = Arrays.asList(1, 5, 2, 1, 0);
+    List<Integer> E = new ArrayList <> ();
+    List<Integer> F = new ArrayList <> ();
+    var t = new Closure() {
+            public void execute(Object o) {
+              Integer k = (Integer) o;
+            }
+      	  };
+    assertEquals(CollectionUtils.forAllDo(l, t),t);
+    assertEquals(CollectionUtils.forAllDo(l.iterator(), t),t);
+    CollectionUtils.forAllDo(l, E::add);
+    CollectionUtils.forAllDo(l.iterator(), F::add);
+    assertEquals(l,E);
+    assertEquals(l,F);
   }
 
   @Test
