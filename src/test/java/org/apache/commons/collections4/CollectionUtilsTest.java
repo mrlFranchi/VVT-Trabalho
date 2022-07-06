@@ -358,6 +358,23 @@ public class CollectionUtilsTest {
   @Test
   void select() {
     /*TODO: test this method*/
+    List<Integer> L = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
+    List<Integer> A = Arrays.asList(1, 3, 5, 7);
+
+    Predicate<Integer> predicate = val -> val % 2 == 0;
+    assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8), L);
+    assertEquals(Arrays.asList(2, 4, 6, 8), CollectionUtils.select(L, predicate));
+
+    CollectionUtils.select(null, predicate, A);
+    assertEquals(Arrays.asList(1, 3, 5, 7), A);
+
+    CollectionUtils.select(L, null, A);
+    assertEquals(Arrays.asList(1, 3, 5, 7), A);
+
+    CollectionUtils.select(null, null, A);
+    assertEquals(Arrays.asList(1, 3, 5, 7), A);
+
+    assertThrows(NullPointerException.class, () -> CollectionUtils.select(L, predicate, null));
   }
 
   @Test
