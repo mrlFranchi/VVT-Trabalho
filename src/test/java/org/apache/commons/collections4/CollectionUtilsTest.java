@@ -177,9 +177,27 @@ public class CollectionUtilsTest {
   }
 
 
-    @Test
+  @Test
   void filterInverse() {
-      /* TODO: test this method */
+	List<Integer> l = Arrays.asList(1,5,2,1,0);
+  	List<Integer> m = Arrays.asList(1,3,5,7,9);
+	Predicate<Integer> isOdd = value -> value % 2 == 0;
+	assertFalse(CollectionUtils.filterInverse(l,null));
+	assertFalse(CollectionUtils.filterInverse(null,isOdd));
+
+	List<Integer> aList = new ArrayList<Integer>();
+	aList.add(1);
+	aList.add(5);
+	aList.add(2);
+	aList.add(1);
+	aList.add(0);
+	assertTrue(CollectionUtils.filterInverse(aList,isOdd));
+	List<Integer> bList = new ArrayList<Integer>();
+	bList.add(1);
+	bList.add(5);
+	bList.add(1);
+	assertEquals(aList,bList);
+  	
   }
 
   @Test
