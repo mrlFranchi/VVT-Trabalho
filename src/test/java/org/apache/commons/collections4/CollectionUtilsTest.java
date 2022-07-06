@@ -336,7 +336,12 @@ public class CollectionUtilsTest {
 
   @Test
   void isSubCollection() {
-    /* TODO: test this method */
+    List<Integer> l = Arrays.asList(1,2,3,3,4,5);
+    List<Integer> m = Arrays.asList(3,4,5);
+    List<Integer> n = Arrays.asList(1,2,3,4,5,5,5);
+    assertTrue(CollectionUtils.isSubCollection(m, l));
+    assertTrue(CollectionUtils.isSubCollection(l, l));
+    assertFalse(CollectionUtils.isSubCollection(n, l));
   }
 
   @Test
