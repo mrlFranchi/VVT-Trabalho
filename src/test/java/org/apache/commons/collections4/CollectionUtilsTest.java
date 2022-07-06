@@ -1,5 +1,5 @@
 package org.apache.commons.collections4;
-
+/*Teste commit Lab*/
 import org.apache.commons.collections4.list.FixedSizeList;
 import org.junit.jupiter.api.function.Executable;
 import static org.junit.jupiter.api.Assertions.*;
@@ -447,7 +447,9 @@ public class CollectionUtilsTest {
 
   @Test
   void union() {
-    /*TODO: test this method*/
+	    List<Integer> l =  Arrays.asList(1,2,3,4);
+	    List<Integer> m =  Arrays.asList(5,6,7);
+	    assertEquals(CollectionUtils.union(l, m), Arrays.asList(1,2,3,4,5,6,7));
   }
 
   @Test
