@@ -1,5 +1,5 @@
 package org.apache.commons.collections4;
-
+/*Teste commit Lab*/
 import org.apache.commons.collections4.list.FixedSizeList;
 import org.junit.jupiter.api.function.Executable;
 import static org.junit.jupiter.api.Assertions.*;
