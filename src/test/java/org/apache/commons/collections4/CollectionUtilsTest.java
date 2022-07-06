@@ -1,5 +1,5 @@
 package org.apache.commons.collections4;
-/*Teste commit Lab*/
+
 import org.apache.commons.collections4.list.FixedSizeList;
 import org.junit.jupiter.api.function.Executable;
 import static org.junit.jupiter.api.Assertions.*;
@@ -156,7 +156,7 @@ public class CollectionUtilsTest {
 
   @Test
   void filter() {
-	   List<Integer> l = Arrays.asList(1,5,2,1,0);
+    List<Integer> l = Arrays.asList(1,5,2,1,0);
 	   List<Integer> m = Arrays.asList(1,3,5,7,9);
 	   Predicate<Integer> isOdd = value -> value % 2 == 1;
 	   assertFalse(CollectionUtils.filter(l,null));
@@ -175,7 +175,6 @@ public class CollectionUtilsTest {
 	   bList.add(1);
 	   assertEquals(aList,bList);
   }
-
 
     @Test
   void filterInverse() {
@@ -431,10 +430,6 @@ public class CollectionUtilsTest {
 
   @Test
   void subtract() {
-	  /*List<Integer> la = Arrays.asList(1,5,2,1,0);
-	  List<Integer> lb = Arrays.asList(5,4,3,2,1);
-	  
-	  assert(Arrays.asList(-4, 1, -1, -1, -1), CollectionUtils.intersection(la, lb));
     /*TODO: test this method*/
   }
 
@@ -469,9 +464,7 @@ public class CollectionUtilsTest {
 
   @Test
   void union() {
-	    List<Integer> l =  Arrays.asList(1,2,3,4);
-	    List<Integer> m =  Arrays.asList(5,6,7);
-	    assertEquals(CollectionUtils.union(l, m), Arrays.asList(1,2,3,4,5,6,7));
+    /*TODO: test this method*/
   }
 
   @Test
