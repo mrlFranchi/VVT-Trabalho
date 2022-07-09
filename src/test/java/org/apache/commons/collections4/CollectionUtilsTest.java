@@ -529,6 +529,9 @@ public class CollectionUtilsTest {
 
   @Test
   void unmodifiableCollection() {
-    /*TODO: test this method*/
+    List<Integer> l =  Arrays.asList(1,2,3,4);
+
+    assertIterableEquals(l, CollectionUtils.unmodifiableCollection(l));
+    assertNotEquals(l, CollectionUtils.unmodifiableCollection(l));
   }
 }
