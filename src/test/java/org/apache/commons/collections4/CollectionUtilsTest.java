@@ -519,7 +519,10 @@ public class CollectionUtilsTest {
 
   @Test
   void synchronizedCollection() {
-    /*TODO: test this method*/
+    List<Integer> L = Arrays.asList(1, 2, 4, 5);
+
+    Collection<Integer> synchronizedCollection = CollectionUtils.synchronizedCollection(L);
+    assertIterableEquals(Arrays.asList(1, 2, 4, 5), synchronizedCollection);
   }
 
   @Test
