@@ -397,7 +397,12 @@ public class CollectionUtilsTest {
 
   @Test
   void predicatedCollection() {
-    /*TODO: test this method*/
+    Predicate<Integer> predicate = value -> value % 2 == 0;
+
+    assertIterableEquals(Arrays.asList(2, 4), CollectionUtils.predicatedCollection(Arrays.asList(2, 4), predicate));
+    assertThrows(IllegalArgumentException.class, () -> CollectionUtils.predicatedCollection(Arrays.asList(1, 1, 3), predicate));
+    assertThrows(NullPointerException.class, () -> CollectionUtils.predicatedCollection(null, predicate));
+    assertThrows(NullPointerException.class, () -> CollectionUtils.predicatedCollection(null,null));
   }
 
   @Test
