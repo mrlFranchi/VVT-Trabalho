@@ -402,7 +402,15 @@ public class CollectionUtilsTest {
 
   @Test
   void retainAll() {
-    /*TODO: test this method*/
+    List<Integer> L = Arrays.asList(1, 2, 3);
+    List<Integer> R = new ArrayList<>();
+
+    var retained = CollectionUtils.retainAll(L, R);
+    assertEquals(Arrays.asList(1, 2, 3), L);
+    assertTrue(retained.isEmpty());
+    R.add(1);
+    retained = CollectionUtils.retainAll(L, R);
+    assertEquals(List.of(1), retained);
   }
 
   @Test
