@@ -451,7 +451,20 @@ public class CollectionUtilsTest {
 
   @Test
   void selectRejected() {
-    /*TODO: test this method*/
+    Predicate<? super Integer> dividedByTwo = value -> value % 2 == 0;
+
+    assertEquals(Arrays.asList(1, 3, 5), CollectionUtils.selectRejected(Arrays.asList(1, 2, 3, 4, 5, 6), dividedByTwo));
+    assertTrue(CollectionUtils.selectRejected(Arrays.asList(0, 2, 10, 4, 8, 6), dividedByTwo).isEmpty());
+
+    List<Integer> output = new ArrayList<>();
+
+    CollectionUtils.selectRejected(Arrays.asList(1, 2, 3, 4, 5, 6), dividedByTwo, output);
+    assertEquals(Arrays.asList(1, 3, 5), output);
+
+    output.clear();
+
+    CollectionUtils.selectRejected(Arrays.asList(0, 2, 10, 4, 8, 6), dividedByTwo, output);
+    assertTrue(output.isEmpty());
   }
 
   @Test
