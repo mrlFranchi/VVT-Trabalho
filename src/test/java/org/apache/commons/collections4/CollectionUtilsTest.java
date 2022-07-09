@@ -517,7 +517,11 @@ public class CollectionUtilsTest {
 
   @Test
   void transformingCollection() {
-    /*TODO: test this method*/
+    List<Integer> l =  Arrays.asList(1,2,3,4);
+
+    Transformer<Integer, Integer> t = value -> value * 2;
+
+    assertNotEquals(l, CollectionUtils.transformingCollection(l, t));
   }
 
   @Test
