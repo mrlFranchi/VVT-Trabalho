@@ -429,7 +429,6 @@ public class CollectionUtilsTest {
 
   @Test
   void select() {
-    /*TODO: test this method*/
     List<Integer> L = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
     List<Integer> A = Arrays.asList(1, 3, 5, 7);
 
@@ -488,7 +487,6 @@ public class CollectionUtilsTest {
 
   @Test
   void sizeIsEmpty() {
-    /*TODO: test this method*/
     assertFalse(CollectionUtils.sizeIsEmpty(List.of(1)));
     assertTrue(CollectionUtils.sizeIsEmpty(new ArrayList<>()));
 
