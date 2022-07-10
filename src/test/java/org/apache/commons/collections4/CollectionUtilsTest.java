@@ -94,9 +94,14 @@ public class CollectionUtilsTest {
   void containsAll() {
     List<Integer> l = Arrays.asList(1, 5, 2, 1, 0);
     List<Integer> v = Arrays.asList(1, 5, 2, 1, 0);
+    List<Integer> k = Arrays.asList(1, 5, null, 1, 0);
+    Collection<Object> e = CollectionUtils.emptyCollection();
+    
 
     assertTrue(CollectionUtils.containsAll(l, v));
-
+    assertTrue(CollectionUtils.containsAll(l, e));
+    assertFalse(CollectionUtils.containsAll(l, k));
+    
     List<Integer> v_ = Arrays.asList(1, 50, 2, 1, 0);
     assertFalse(CollectionUtils.containsAll(l, v_));
   }
@@ -547,7 +552,8 @@ public class CollectionUtilsTest {
     List<Integer> l =  Arrays.asList(1,2,3,4);
 
     Transformer<Integer, Integer> t = value -> value * 2;
-
+    
+    
     assertNotEquals(l, CollectionUtils.transformingCollection(l, t));
   }
 
