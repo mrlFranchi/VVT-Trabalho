@@ -514,7 +514,9 @@ public class CollectionUtilsTest {
   @Test
   void selectRejected() {
     Predicate<? super Integer> dividedByTwo = value -> value % 2 == 0;
-
+    testIterator<Integer> t = new testIterator<Integer>(5);
+    
+    assertEquals(Arrays.asList(1, 3, 5), CollectionUtils.selectRejected(t, dividedByTwo));
     assertEquals(Arrays.asList(1, 3, 5), CollectionUtils.selectRejected(Arrays.asList(1, 2, 3, 4, 5, 6), dividedByTwo));
     assertTrue(CollectionUtils.selectRejected(Arrays.asList(0, 2, 10, 4, 8, 6), dividedByTwo).isEmpty());
 
@@ -527,6 +529,8 @@ public class CollectionUtilsTest {
 
     CollectionUtils.selectRejected(Arrays.asList(0, 2, 10, 4, 8, 6), dividedByTwo, output);
     assertTrue(output.isEmpty());
+    
+    
   }
 
   @Test
