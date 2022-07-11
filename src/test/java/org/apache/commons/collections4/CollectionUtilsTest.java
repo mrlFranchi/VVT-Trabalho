@@ -448,6 +448,9 @@ public class CollectionUtilsTest {
   void select() {
     List<Integer> L = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
     List<Integer> A = Arrays.asList(1, 3, 5, 7);
+    List<Integer> B = Arrays.asList(2, 4, 6, 8);
+    List<Integer> O = new ArrayList<Integer>();
+    List<Integer> R = new ArrayList<Integer>();
     testIterator<Integer> t = new testIterator(5);
     
     Predicate<Integer> predicate = val -> val % 2 == 0;
@@ -465,8 +468,11 @@ public class CollectionUtilsTest {
 
     assertThrows(NullPointerException.class, () -> CollectionUtils.select(L, predicate, null));
     
-    System.out.println(CollectionUtils.select(t, predicate));
     assertEquals(Arrays.asList(0,2,4), CollectionUtils.select(t, predicate));
+    
+    assertTrue(CollectionUtils.isEqualCollection(O, CollectionUtils.select(L, predicate, O, R)));
+    assertTrue(CollectionUtils.isEqualCollection(O, B) && CollectionUtils.isEqualCollection(R, A));
+    
   }
   
   //Private class to test iterable
@@ -485,7 +491,7 @@ public class CollectionUtilsTest {
 	    public Integer c;
 	    public Integer l;
 	    // constructor
-	    public CustomIterator(testIterator obj) {
+	    public CustomIterator(@SuppressWarnings("rawtypes") testIterator obj) {
 	        c = 0;
 	        l = (Integer) obj.i;
 	    }
@@ -496,7 +502,8 @@ public class CollectionUtilsTest {
 	    }
 	      
 	    // moves the cursor/iterator to next element
-	    public T next() {
+	    @SuppressWarnings("unchecked")
+		public T next() {
 	    	Integer o = this.c;
 	    	this.c = this.c + 1;
 	    	return (T) o;
