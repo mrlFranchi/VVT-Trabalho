@@ -543,6 +543,7 @@ public class CollectionUtilsTest {
   @Test
   void transform() {
     List<Integer> L = Arrays.asList(1, 2, 4, 5);
+    Set<Integer> S = new HashSet<Integer>(L);
 
     Transformer<Integer, Integer> T = value -> value%2;
 
@@ -557,6 +558,9 @@ public class CollectionUtilsTest {
 
     CollectionUtils.transform(L, T);
     assertEquals(Arrays.asList(1, 0, 0, 1), L);
+    
+    CollectionUtils.transform(S, T);
+    assertEquals(Set.of(1, 0), S);
   }
 
   @Test
