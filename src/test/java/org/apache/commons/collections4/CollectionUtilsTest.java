@@ -116,6 +116,7 @@ public class CollectionUtilsTest {
     assertFalse(CollectionUtils.containsAny(l, 50, 20, 3, 4));
     
     assertTrue(CollectionUtils.containsAny(a, b));
+    assertTrue(CollectionUtils.containsAny(a, 1,0));
   }
 
   @Test
