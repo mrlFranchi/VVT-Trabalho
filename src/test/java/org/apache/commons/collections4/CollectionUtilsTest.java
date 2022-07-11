@@ -134,7 +134,12 @@ public class CollectionUtilsTest {
 
   @Test
   void disjunction() {
-    List<Integer> l = Arrays.asList(1, 5, 2, 1, 0);
+	List<Integer> l = Arrays.asList(1, 2, 3);
+	List<Integer> m = Arrays.asList(3, 4, 5);
+	List<Integer> dis = Arrays.asList(1, 2 , 4, 5);
+	    
+	assertTrue(CollectionUtils.isEqualCollection(dis, CollectionUtils.disjunction(l, m)));
+	    
   }
 
   @Test
