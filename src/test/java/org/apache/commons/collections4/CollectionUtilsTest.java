@@ -106,12 +106,16 @@ public class CollectionUtilsTest {
     List<Integer> l = Arrays.asList(1, 5, 2, 1, 0);
     List<Integer> v = Arrays.asList(0, 0, 0, 0, 0);
     List<Integer> v_ = Arrays.asList(10, 20, 30, 40, 50);
+    List<Integer> a = Arrays.asList(1);
+    List<Integer> b = Arrays.asList(1,0);
 
     assertTrue(CollectionUtils.containsAny(l, v));
     assertFalse(CollectionUtils.containsAny(l, v_));
 
     assertTrue(CollectionUtils.containsAny(l, 1, 2, 3, 4));
     assertFalse(CollectionUtils.containsAny(l, 50, 20, 3, 4));
+    
+    assertTrue(CollectionUtils.containsAny(a, b));
   }
 
   @Test
