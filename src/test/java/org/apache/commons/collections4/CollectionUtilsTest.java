@@ -448,7 +448,8 @@ public class CollectionUtilsTest {
   void select() {
     List<Integer> L = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
     List<Integer> A = Arrays.asList(1, 3, 5, 7);
-
+    testIterator<Integer> t = new testIterator(5);
+    
     Predicate<Integer> predicate = val -> val % 2 == 0;
     assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8), L);
     assertEquals(Arrays.asList(2, 4, 6, 8), CollectionUtils.select(L, predicate));
@@ -463,7 +464,45 @@ public class CollectionUtilsTest {
     assertEquals(Arrays.asList(1, 3, 5, 7), A);
 
     assertThrows(NullPointerException.class, () -> CollectionUtils.select(L, predicate, null));
+    
+    System.out.println(CollectionUtils.select(t, predicate));
+    assertEquals(Arrays.asList(0,2,4), CollectionUtils.select(t, predicate));
   }
+  
+  //Private class to test iterable
+  private class testIterator<E> implements Iterable<E> {
+      	public Integer i = 0;
+      	
+      	public testIterator(int k) {
+      		this.i = k;
+      	}
+	    // code for data structure
+	    public Iterator<E> iterator() {
+	        return new CustomIterator<E>(this);
+	    }
+	}
+	private class CustomIterator<T> implements Iterator<T> {
+	    public Integer c;
+	    public Integer l;
+	    // constructor
+	    public CustomIterator(testIterator obj) {
+	        c = 0;
+	        l = (Integer) obj.i;
+	    }
+	      
+	    // Checks if the next element exists
+	    public boolean hasNext() {
+	    	return this.c<=this.l;
+	    }
+	      
+	    // moves the cursor/iterator to next element
+	    public T next() {
+	    	Integer o = this.c;
+	    	this.c = this.c + 1;
+	    	return (T) o;
+	    }
+	    
+	}
 
   @Test
   void selectRejected() {
