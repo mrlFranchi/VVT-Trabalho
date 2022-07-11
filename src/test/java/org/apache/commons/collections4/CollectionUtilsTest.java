@@ -299,11 +299,13 @@ public class CollectionUtilsTest {
     List<Integer> E = Arrays.asList(1, 2, 3, 4);
     List<Integer> N = Arrays.asList(1, 2, 6, 4);
     List<Integer> O = Arrays.asList(1, 2);
+    List<Integer> S = Arrays.asList(1, 2, 6, 6);
 
     assertTrue(CollectionUtils.isEqualCollection(L, L));
     assertTrue(CollectionUtils.isEqualCollection(L, E));
     assertFalse(CollectionUtils.isEqualCollection(L, N));
     assertFalse(CollectionUtils.isEqualCollection(L, O));
+    assertFalse(CollectionUtils.isEqualCollection(L, S));
 
     Equator<Integer> equator = new Equator<>() {
       @Override
