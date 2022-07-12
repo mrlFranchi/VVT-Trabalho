@@ -93,6 +93,13 @@ public class CollectionUtilsTest {
     List<Integer> v = Arrays.asList(10, 25, 1, 0, 7);
 
     assertEquals(Arrays.asList(1, 5, 2, 1, 0, 10, 25, 1, 0, 7), CollectionUtils.collate(l, v));
+    assertEquals(Arrays.asList(1, 1, 5, 2, 1, 0, 10, 25, 1, 0, 7, 8), CollectionUtils.collate(Arrays.asList(1), Arrays.asList(1, 5, 2, 1, 0, 10, 25, 1, 0, 7, 8)));
+    assertThrows(NullPointerException.class, () -> CollectionUtils.collate(l, null));
+    assertThrows(NullPointerException.class, () -> CollectionUtils.collate(null, v));
+    assertThrows(NullPointerException.class, () -> CollectionUtils.collate(l, v, null));
+    assertEquals(Arrays.asList(1, 5, 2, 1, 0, 10, 25, 1, 0, 7), CollectionUtils.collate(l, v, false));
+    assertEquals(Arrays.asList(1, 5, 2, 1, 0, 10, 25, 1, 0, 7), CollectionUtils.collate(l, v, true));
+
   }
 
   @Test
