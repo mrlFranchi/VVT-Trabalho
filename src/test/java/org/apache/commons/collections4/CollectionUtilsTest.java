@@ -461,10 +461,27 @@ public class CollectionUtilsTest {
 
   @Test
   void removeAll() {
-    List<Integer> l = Arrays.asList(1,2,3,4);
-    List<Integer> t = Arrays.asList(1,2,3);
+  List L = Arrays.asList(1,2,3,4);
+  List R = Arrays.asList(1,2);
+  List V = Arrays.asList(5,6);
 
-    assertEquals(Arrays.asList(4),CollectionUtils.removeAll(l, t));
+  assertEquals(Arrays.asList(3,4),CollectionUtils.removeAll(L, R));
+
+  Equator<Integer> equator = new Equator<>() {
+      @Override
+      public boolean equate(Integer o1, Integer o2) {
+        return o1.equals(o2);
+      }
+
+      @Override
+      public int hash(Integer o) {
+        return o.hashCode();
+      }
+
+    };
+    
+assertEquals(Arrays.asList(1,2,3,4), CollectionUtils.removeAll(L, V, equator));
+assertEquals(Arrays.asList(3,4), CollectionUtils.removeAll(L, R, equator));
   }
   
   @Test
