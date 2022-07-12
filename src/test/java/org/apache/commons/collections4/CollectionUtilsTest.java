@@ -34,6 +34,8 @@ public class CollectionUtilsTest {
   void addAllEnumeration() {
     List<Integer> l = new ArrayList<>();
     Vector<Integer> v = new Vector<>();
+    
+    assertFalse(CollectionUtils.addAll(l, v.elements()));
     v.add(3);
     v.add(1);
 
