@@ -486,16 +486,29 @@ assertEquals(Arrays.asList(3,4), CollectionUtils.removeAll(L, R, equator));
   
   @Test
   void retainAll() {
-    List<Integer> L = Arrays.asList(1, 2, 3);
-    List<Integer> R = new ArrayList<>();
+	  List L = Arrays.asList(1, 2, 3);
+	  List R = new ArrayList<>();
 
-    var retained = CollectionUtils.retainAll(L, R);
-    assertEquals(Arrays.asList(1, 2, 3), L);
-    assertTrue(retained.isEmpty());
-    R.add(1);
-    retained = CollectionUtils.retainAll(L, R);
-    assertEquals(List.of(1), retained);
-  }
+	    Equator<Integer> equator = new Equator<>() {
+	          @Override
+	          public boolean equate(Integer o1, Integer o2) {
+	            return o1.equals(o2);
+	          }
+
+	          @Override
+	          public int hash(Integer o) {
+	            return o.hashCode();
+	          }
+
+	   };
+	   
+	    assertEquals(List.of(), CollectionUtils.retainAll(L, R));
+	    assertEquals(List.of(), CollectionUtils.retainAll(L, R, equator));
+	    R.add(1);
+	    assertEquals(List.of(1), CollectionUtils.retainAll(L, R, equator));
+	  }
+
+
 
   @Test
   void reverseArray() {
