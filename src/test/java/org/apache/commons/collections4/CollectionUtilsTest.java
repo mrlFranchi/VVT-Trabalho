@@ -98,10 +98,18 @@ public class CollectionUtilsTest {
   @Test
   void collect() {
     List<Integer> l = Arrays.asList(1, 5, 2, 1, 0);
-
+	testIterator<Integer> testIterator = new testIterator(5);
+	testIterator<Integer> nullIterator = null;
+    List<Float> f = new ArrayList<Float>();
+    List<Float> a = Arrays.asList(0f, 1f, 2f, 3f, 4f, 5f);
+    
     Transformer<Integer, Float> t = Integer::floatValue;
-
+    
+    assertEquals(a, CollectionUtils.collect(nullIterator, t, a));
     assertEquals(Arrays.asList(1f, 5f, 2f, 1f, 0f), CollectionUtils.collect(l, t));
+    assertEquals(a, CollectionUtils.collect(testIterator, t));
+    assertEquals(a, CollectionUtils.collect(testIterator.iterator(), t));
+    
   }
 
   @Test
