@@ -576,6 +576,9 @@ public class CollectionUtilsTest {
 
   @Test
   void sizeIsEmpty() {
+	Object[] testEmpty =  new Object[]{};
+	Object[] testNotEmpty =  new Object[]{1};
+	
     assertFalse(CollectionUtils.sizeIsEmpty(List.of(1)));
     assertTrue(CollectionUtils.sizeIsEmpty(new ArrayList<>()));
 
@@ -595,7 +598,17 @@ public class CollectionUtilsTest {
     assertFalse(CollectionUtils.sizeIsEmpty(V.elements()));
 
     assertThrows(IllegalArgumentException.class, () -> CollectionUtils.sizeIsEmpty(1));
+    
+    assertFalse(CollectionUtils.sizeIsEmpty(new testIterator(1)));
+    assertTrue(CollectionUtils.sizeIsEmpty(new testIterator(-1)));
+    
+    assertTrue(CollectionUtils.sizeIsEmpty(null));
+    
+    assertTrue(CollectionUtils.sizeIsEmpty(testEmpty));
+    assertFalse(CollectionUtils.sizeIsEmpty(testNotEmpty));
+    
   }
+  
 
   @Test
   void subtract() {
