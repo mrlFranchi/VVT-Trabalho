@@ -24,10 +24,22 @@ public class CollectionUtilsTest {
   @Test
   void addAll() {
 	List<Integer> l = new ArrayList<>();
+	List<Integer> r = new ArrayList<>();
+	Set<Integer> s = new HashSet<Integer>();
+	s.add(1);
 	l.add(1);
+	testIterator<Integer> t = new testIterator(5);
+	testIterator<Integer> v = new testIterator(-1);
 
+	assertFalse(CollectionUtils.addAll(s,1));
+	assertFalse(CollectionUtils.addAll(l, r));
     assertTrue(CollectionUtils.addAll(l, 7, 2, 1));
     assertEquals(Arrays.asList(1, 7, 2, 1), l);
+    assertTrue(CollectionUtils.addAll(r, t));
+    assertEquals(Arrays.asList(0, 1, 2, 3, 4, 5),r);
+    assertFalse(CollectionUtils.addAll(r, v));
+    assertTrue(CollectionUtils.addAll(r, l));
+    assertEquals(Arrays.asList(0, 1, 2, 3, 4, 5, 1, 7, 2, 1),r);
   }
 
   @Test
