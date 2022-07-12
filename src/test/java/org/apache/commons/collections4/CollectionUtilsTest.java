@@ -445,6 +445,14 @@ public class CollectionUtilsTest {
   }
 
   @Test
+  void removeAll() {
+    List<Integer> l = Arrays.asList(1,2,3,4);
+    List<Integer> t = Arrays.asList(1,2,3);
+
+    assertEquals(Arrays.asList(4),CollectionUtils.removeAll(l, t));
+  }
+  
+  @Test
   void retainAll() {
     List<Integer> L = Arrays.asList(1, 2, 3);
     List<Integer> R = new ArrayList<>();
