@@ -89,10 +89,15 @@ public class CollectionUtilsTest {
 
   @Test
   void collate() {
-    List<Integer> l = Arrays.asList(1, 5, 2, 1, 0);
-    List<Integer> v = Arrays.asList(10, 25, 1, 0, 7);
+  List l = Arrays.asList(1, 5, 2, 1, 0);
+  List v = Arrays.asList(10, 25, 1, 7, 7);
 
-    assertEquals(Arrays.asList(1, 5, 2, 1, 0, 10, 25, 1, 0, 7), CollectionUtils.collate(l, v));
+    assertThrows(NullPointerException.class, () -> CollectionUtils.collate(l, null));
+    assertThrows(NullPointerException.class, () -> CollectionUtils.collate(null, v));
+    assertThrows(NullPointerException.class, () -> CollectionUtils.collate(l, v, null));
+    assertNotEquals(Arrays.asList(1, 2, 3), CollectionUtils.collate(l, v, false));
+    assertNotEquals(Arrays.asList(1, 2, 3), CollectionUtils.collate(l, v, true));
+    assertEquals(Arrays.asList(1, 5, 2, 1, 0, 10, 25, 1, 7, 7), CollectionUtils.collate(l, v));
   }
 
   @Test
@@ -294,8 +299,6 @@ public class CollectionUtilsTest {
     assertEquals(Map.entry(2, 2), CollectionUtils.get((Object)M, 2));
     assertEquals(1, CollectionUtils.get((Object)(v.elements()), 0));
     assertEquals(1, CollectionUtils.get(objectArray, 0));
-    //assertEquals(1, 
-    //		CollectionUtils.get(, 0));
     
     
     assertThrows(IndexOutOfBoundsException.class,() -> CollectionUtils.get(l,-1));
