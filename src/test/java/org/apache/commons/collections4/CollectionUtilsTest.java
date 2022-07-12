@@ -99,8 +99,7 @@ public class CollectionUtilsTest {
     assertThrows(NullPointerException.class, () -> CollectionUtils.collate(l, v, null));
     assertEquals(Arrays.asList(1, 5, 2, 1, 0, 10, 25, 1, 0, 7), CollectionUtils.collate(l, v, false));
     assertEquals(Arrays.asList(1, 5, 2, 1, 0, 10, 25, 1, 0, 7), CollectionUtils.collate(l, v, true));
-
-  }
+ }
 
   @Test
   void collect() {
