@@ -371,11 +371,17 @@ public class CollectionUtilsTest {
 
   @Test
   void isFull() {
-    List<Integer> V = new ArrayList<>();
-    FixedSizeList<Integer> L = FixedSizeList.fixedSizeList(V);
+	  assertThrows(NullPointerException.class, () -> CollectionUtils.isFull( null));
+	  assertEquals(false, CollectionUtils.isFull(List.of()));
 
-    assertTrue(CollectionUtils.isFull(L));
-  }
+	  List<Integer> coll = new ArrayList<>(5);
+	  FixedSizeList<Integer> L = FixedSizeList.fixedSizeList(coll);
+
+	  assertEquals(true, CollectionUtils.isFull(L));
+
+	  coll.add(1);
+	  assertEquals(true, CollectionUtils.isFull(L));
+	  }
 
   @Test
   void isNotEmpty() {
