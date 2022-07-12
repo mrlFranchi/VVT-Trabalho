@@ -277,14 +277,29 @@ public class CollectionUtilsTest {
   @Test
   void get() {
     List<Integer> l = Arrays.asList(1, 5, 2, 1, 0);
-
     Map<Integer, Integer> M = new HashMap<>();
+    Vector<Integer> v = new Vector<>();
+    v.add(1);
+    v.add(2);
+    Object[] objectArray = new Object[] {1};
+    
 
     l.forEach(el -> M.put(l.indexOf(el), el));
 
     assertEquals(1, CollectionUtils.get(l, 0));
     assertEquals(1, CollectionUtils.get(l.iterator(), 0));
     assertEquals(Map.entry(2, 2), CollectionUtils.get(M, 2));
+    assertEquals(1, CollectionUtils.get((Object)l, 0));
+    assertEquals(1, CollectionUtils.get((Object)(l.iterator()), 0));
+    assertEquals(Map.entry(2, 2), CollectionUtils.get((Object)M, 2));
+    assertEquals(1, CollectionUtils.get((Object)(v.elements()), 0));
+    assertEquals(1, CollectionUtils.get(objectArray, 0));
+    //assertEquals(1, 
+    //		CollectionUtils.get(, 0));
+    
+    
+    assertThrows(IndexOutOfBoundsException.class,() -> CollectionUtils.get(l,-1));
+    assertThrows(IllegalArgumentException.class,() -> CollectionUtils.get((Object)null,0));
   }
 
   @Test
